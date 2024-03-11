@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+
+  body {
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+    @apply bg-slate-50;
+  }
+
+  .main {
+    min-height: calc(100dvh - 70px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    @apply bg-gray-200;
+  }
+}

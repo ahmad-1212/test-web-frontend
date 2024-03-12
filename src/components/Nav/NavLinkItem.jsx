@@ -11,7 +11,8 @@ const NavLinkItem = ({ navItem }) => {
             : "flex border-b-4 border-transparent hover:border-primary-200 hover:bg-primary-200/20 self-stretch items-center text-[1.1rem] font-[500] px-4"
         }
       >
-        {navItem.title}
+        <span>{navItem.icon}</span>
+        <span>{navItem.title}</span>
       </NavLink>
     </li>
   );

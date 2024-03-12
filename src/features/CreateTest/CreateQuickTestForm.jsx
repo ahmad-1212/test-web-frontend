@@ -10,12 +10,13 @@ const CreateQuickTestForm = () => {
   const labelClasses = "font-[500] text-xl";
   const inputClasses =
     " outline-none py-2 px-3 rounded-md border-2 border-transparent focus:border-primary-200 text-black";
+
   const inputCheckboxClasses =
-    "h-5 w-5 text-primary-300 transition duration-150 ease-in-out cursor-pointer";
+    "h-5 w-5 text-primary-300 transition duration-150 ease-in-out cursor-pointer accent-primary-300";
 
   return (
     <>
-      <form className="flex flex-col gap-7 h-[70%] w-full px-4 overflow-y-auto scrollbare">
+      <form className="flex flex-col gap-7 h-[70%] w-full px-4 overflow-y-auto scrollbar">
         {/* Test Name */}
         <div className="flex flex-col gap-2">
           <label className={labelClasses}>Test Name</label>
@@ -24,13 +25,15 @@ const CreateQuickTestForm = () => {
         {/* Test type */}
         <div className="flex flex-col gap-2">
           <label className={labelClasses}>Test Type</label>
-          <ul className="flex bg-white text-black rounded-md overflow-hidden text-[0.9rem]">
+          <ul className="flex  text-black rounded-md overflow-hidden text-[0.9rem]">
             {TEST_TYPES.map((typ) => (
               <li
                 key={typ}
                 onClick={() => setQuestionType(typ)}
-                className={`py-2 px-3 flex-1 hover:bg-primary-400 hover:text-white cursor-pointer ${
-                  typ === questionType && "bg-primary-400 text-white"
+                className={`py-2 px-3 flex-1   cursor-pointer ${
+                  typ === questionType
+                    ? "bg-primary-400 text-white"
+                    : "bg-white hover:bg-gray-200"
                 }`}
               >
                 {typ}

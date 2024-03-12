@@ -3,7 +3,7 @@ import Avatar from "../UI/Avatar";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 bg-white shadow-md flex items-center justify-between px-16 h-[70px]">
+    <header className="sticky top-0 bg-white shadow-md flex items-center justify-between px-16 h-[70px] z-10">
       <NavLinks />
       <Avatar />
     </header>

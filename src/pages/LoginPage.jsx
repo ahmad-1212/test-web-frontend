@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../components/UI/Button";
+import Input from "../components/UI/Input";
 
 const LoginPage = () => {
   return (
@@ -10,7 +11,7 @@ const LoginPage = () => {
         </div>
         <div className="flex gap-4 items-center">
           <p>Don't have an account?</p>
-          <Button type="outlined" className="text-primary-500">
+          <Button type="underline" className="text-primary-500">
             Get Started
           </Button>
         </div>
@@ -19,22 +20,19 @@ const LoginPage = () => {
         <form className="w-[500px] mx-auto shadow-xl p-10 mb-16">
           <h2 className="text-center text-4xl mt-5 mb-14">Sign In</h2>
           <div className="flex flex-col gap-2 mb-8">
-            <label className="font-[600] text-[1.2rem]">Email</label>
-            <input
-              type="email"
-              placeholder="name@example.com"
-              className="outline-none border-2 bg-transparent px-4 py-2 rounded-md focus:border-primary-500"
-            />
+            <label htmlFor="email" className="font-[600] text-[1.2rem]">
+              Email
+            </label>
+            <Input type="email" id="email" placeholder="name@example.com" />
           </div>
           <div className="flex flex-col gap-2">
-            <label className="font-[600] text-[1.2rem]">Password</label>
-            <input
-              type="password"
-              className="outline-none border-2 bg-transparent px-4 py-2 rounded-md focus:border-primary-500"
-            />
+            <label htmlFor="password" className="font-[600] text-[1.2rem]">
+              Password
+            </label>
+            <Input type="password" id="password" />
           </div>
           <div className="flex justify-center mt-14">
-            <Button type="primary">Sign In</Button>
+            <Button type="dark">Sign In</Button>
           </div>
           <Link
             to="#"

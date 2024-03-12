@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+  /* Basic reset */
   *,
   *::before,
   *::after {
@@ -11,16 +12,27 @@
     box-sizing: inherit;
   }
 
+  /* Basic styles */
   body {
     font-family: "Roboto", sans-serif;
     box-sizing: border-box;
     @apply bg-slate-50;
   }
 
+  /* Custom class for main content */
   .main {
     min-height: calc(100dvh - 70px);
     overflow-y: auto;
     overflow-x: hidden;
     @apply bg-gray-200;
+  }
+
+  /* Scrollbar styles */
+  .scrollbar::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary-200 rounded-md;
   }
 }

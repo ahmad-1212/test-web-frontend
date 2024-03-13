@@ -21,11 +21,14 @@ to run this project
 
 ## Modules added on 3/14/2024
 
-&bull; context <br/>
+### &bull; context <br/>
+
 State of the app <br/><br/>
 
-&bull; services <br/>
+### &bull; services <br/>
+
 Api services<br/><br/>
 
-&bull; providers <br/>
+### &bull; providers <br/>
+
 All the providers of app <br/><br/>

@@ -1,4 +1,3 @@
-import Input from "../../components/UI/Input";
 import Select from "../../components/UI/Select";
 
 const CreateTestForm = () => {
@@ -7,11 +6,18 @@ const CreateTestForm = () => {
       <div className="flex-1  px-5 flex flex-col gap-8">
         <div className="flex flex-col gap-2">
           <label className="text-[1.1rem]">Name</label>
-          <Input type="text" />
+          <input
+            type="text"
+            className="outline-none border-2 px-4 py-2 rounded-md  bg-transparent"
+          />
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-[1.1rem]">Number of Questions</label>
-          <Input type="text" className=" w-[30%]" />
+          <input
+            type="number"
+            min={1}
+            className=" w-[30%] outline-none border-2 px-4 py-2 rounded-md  bg-transparent"
+          />
         </div>
         {/* Question State */}
         <div className="flex gap-7">

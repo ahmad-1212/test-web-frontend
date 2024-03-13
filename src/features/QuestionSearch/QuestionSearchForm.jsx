@@ -1,8 +1,10 @@
 import Button from "../../components/UI/Button";
-import Input from "../../components/UI/Input";
 import Select from "../../components/UI/Select";
+import SimpleInput from "../../components/UI/SimpleInput";
+import { useGetSearchData } from "./useGetSearchData";
 
 const QuestionSearchForm = () => {
+  const { data, isLoading } = useGetSearchData();
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -12,8 +14,8 @@ const QuestionSearchForm = () => {
       className="flex justify-between items-center  pl-7 py-4 bg-slate-100"
     >
       <div className="flex flex-1 gap-3">
-        <Input
-          className="border-gray-400 bg-white"
+        <SimpleInput
+          className="bg-white"
           type="text"
           placeholder="Search by keyword"
         />
@@ -25,7 +27,7 @@ const QuestionSearchForm = () => {
           <option value="Reference">Reference</option>
           <option value="Question ID">Question ID</option>
         </Select>
-        <Button type="dark" className="text-[1rem]">
+        <Button variant="dark" className="text-[1rem]">
           Search
         </Button>
       </div>
@@ -46,7 +48,7 @@ const QuestionSearchForm = () => {
             <option value="Categoray 5">Categoray 5</option>
           </Select>
         </div>
-        <Button type="dark" className="text-[1rem]">
+        <Button variant="dark" className="text-[1rem]">
           Create Test
         </Button>
       </div>

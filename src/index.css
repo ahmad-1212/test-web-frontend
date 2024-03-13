@@ -36,3 +36,9 @@
     @apply bg-primary-200 rounded-md;
   }
 }
+
+@layer utilities {
+  .form {
+    @apply w-[500px] mx-auto shadow-xl p-10 mb-16 border-2 rounded-md;
+  }
+}

@@ -1,7 +1,9 @@
-function Table({ children }) {
+function Table({ children, className = "" }) {
   return (
-    <div className="overflow-x-auto min-h-[500px] border-2 rounded-md">
-      <table className="table-auto w-full border-collapse">{children}</table>
+    <div className="overflow-x-auto  border-2 rounded-md">
+      <table className={`table-auto w-full border-collapse ${className}`}>
+        {children}
+      </table>
     </div>
   );
 }

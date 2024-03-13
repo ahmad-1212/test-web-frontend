@@ -30,7 +30,7 @@ const TestCard = ({ name, status, numOfQuestions, score, mode }) => {
           <span>{score ? score : "-"}</span>
         </div>
         <div>
-          <Button className="text-[0.8rem] px-3" type="dark">
+          <Button className="text-[0.8rem] px-3" variant="dark">
             {status === "completed" ? "View" : "Resume"}
           </Button>
         </div>

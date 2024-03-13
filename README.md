@@ -7,18 +7,25 @@ to run this project
 
 ## Modules
 
-&bull; components
-&bull; features
-&bull; hooks
-&bull; pages
-&bull; providers
-&bull; utils
+### &bull; components <br/>
+
+### &bull; features <br/>
+
+### &bull; hooks <br/>
+
+### &bull; pages <br/>
+
+### &bull; providers <br/>
+
+### &bull; utils
 
 ## Modules added on 3/14/2024
 
-&bull; context
-State of the app
-&bull; services
-Api services
-&bull; providers
-All the providers of app
+&bull; context <br/>
+State of the app <br/><br/>
+
+&bull; services <br/>
+Api services<br/><br/>
+
+&bull; providers <br/>
+All the providers of app <br/><br/>

@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
 import Sidebare from "../Sidebare/Sidebare";
-import CreateQuickTest from "../../features/CreateTest/CreateQuickTest";
+import QuizTrack from "../../features/Quiz/QuizTrack";
 
 const MainLayout = ({ children }) => {
   return (
     <div className="flex h-screen">
       <Sidebare>
-        <CreateQuickTest />
+        <QuizTrack />
       </Sidebare>
 
       <div className="flex-1 overflow-y-auto">

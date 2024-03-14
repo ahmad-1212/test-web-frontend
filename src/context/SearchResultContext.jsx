@@ -5,27 +5,37 @@ const SearchResultContext = createContext({});
 const initialState = {
   searchResults: [],
   selectedData: [],
+  selectedDataIds: [],
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "SET_SEARCH_RESULTS":
-      console.log(action.payload);
       return {
         ...state,
         searchResults: action.payload,
         dataLength: action.payload.length,
       };
-    case "SET_SELECTED_DATA_LENGTH":
-      return {
-        ...state,
-        selectedDataLength: action.payload,
-      };
     case "SET_SELECTED_DATA":
       return {
         ...state,
-        selectedData: action.payload,
+        selectedData: [...state.selectedData, action.payload],
+        selectedDataIds: [...state.selectedDataIds, action.payload.id],
       };
+    case "REMOVE_SELECTED_DATA": {
+      console.log(action.payload);
+      const newSelectedData = state.selectedData.filter(
+        (data) => data.id !== action.payload
+      );
+      const newSelectedIds = state.selectedDataIds.filter(
+        (slecId) => slecId !== action.payload
+      );
+      return {
+        ...state,
+        selectedData: newSelectedData,
+        selectedDataIds: newSelectedIds,
+      };
+    }
     default:
       return state;
   }
@@ -33,14 +43,24 @@ const reducer = (state, action) => {
 
 const SearchResultContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state);
+
   const setData = (data) => {
-    console.log(data);
     dispatch({ type: "SET_SEARCH_RESULTS", payload: data });
   };
 
+  const setSelectedData = (data) => {
+    dispatch({ type: "SET_SELECTED_DATA", payload: data });
+  };
+
+  const removeSelectedData = (id) => {
+    console.log(id);
+    dispatch({ type: "REMOVE_SELECTED_DATA", payload: id });
+  };
+
   return (
-    <SearchResultContext.Provider value={{ setData, state }}>
+    <SearchResultContext.Provider
+      value={{ setData, setSelectedData, removeSelectedData, state }}
+    >
       {children}
     </SearchResultContext.Provider>
   );

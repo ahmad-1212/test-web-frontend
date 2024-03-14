@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
 import { useForm } from "react-hook-form";
-import { useLogin } from "./useLogin";
+
+import { useSignup } from "./useSignup";
 
 const SignupForm = () => {
   const {
@@ -11,10 +12,17 @@ const SignupForm = () => {
     getValues,
     formState: { errors },
   } = useForm();
-  const { login, isLoading } = useLogin();
+  const { signup, isLoading } = useSignup();
+  const navigate = useNavigate();
   const onSubmit = (data) => {
     // Handle form submission
-    login(data);
+    signup(data, {
+      onSuccess: (data) => {
+        console.log(data);
+        localStorage.setItem("username", data.username);
+        navigate("/");
+      },
+    });
   };
 
   return (

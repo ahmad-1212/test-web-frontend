@@ -1,34 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoChevronDownOutline } from "react-icons/io5";
 
 import Select from "../../components/UI/Select";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
+import { useSearchResultContext } from "../../context/SearchResultContext";
+import { useSearchParams } from "react-router-dom";
 
-const QuestionSearchFilter = ({
-  onCheckboxChange,
-  checkedOptions,
-  selectedCategory,
-  onSetSelectedCategory,
-  tabs,
-  allQuestions,
-}) => {
+const QuestionsResultFilter = ({ onCheckboxChange, checkedOptions }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [showMenu, setShowMenu] = useState(false);
   const ref = useOutsideClick(() => setShowMenu(false));
-  console.log(selectedCategory);
+  const { state } = useSearchResultContext();
+
+  const handleSelectedOption = (opt) => {
+    searchParams.set("questions", opt);
+    setSearchParams(searchParams);
+  };
+
+  useEffect(() => {
+    searchParams.set("questions", "allQuestions");
+    setSearchParams(searchParams);
+  }, []);
+
   return (
     <div className=" h-[70px] flex justify-between items-center px-10">
-      <div className="flex gap-3 self-stretch items-center ">
-        {tabs.map((tb) => (
-          <div
-            className={`border-b-4 cursor-pointer border-transparent pb-2 ${
-              selectedCategory === tb && "border-primary-400"
-            }`}
-            key={tb}
-            onClick={() => onSetSelectedCategory(tb)}
-          >
-            {tb} {allQuestions}
-          </div>
-        ))}
+      <div className="flex gap-4 self-stretch items-center ">
+        <div
+          className={`${
+            searchParams.get("questions") === "allQuestions"
+              ? "border-primary-500"
+              : " border-transparent"
+          } text-[1.1rem] font-[500] hover:border-primary-500 cursor-pointer border-b-4 pb-2`}
+          onClick={() => handleSelectedOption("allQuestions")}
+        >
+          All Questions {state.searchResults.length}
+        </div>
+        <div
+          onClick={() => handleSelectedOption("selected")}
+          className={`${
+            searchParams.get("questions") === "selected"
+              ? "border-primary-500"
+              : " border-transparent"
+          } text-[1.1rem] font-[500] hover:border-primary-500 cursor-pointer border-b-4 pb-2`}
+        >
+          Selected {state.selectedData.length}
+        </div>
       </div>
 
       {/* Select Columns to show */}
@@ -119,4 +135,4 @@ const QuestionSearchFilter = ({
   );
 };
 
-export default QuestionSearchFilter;
+export default QuestionsResultFilter;

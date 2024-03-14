@@ -1,7 +1,7 @@
 function Table({ children, className = "" }) {
   return (
-    <div className="overflow-x-auto  border-2 rounded-md">
-      <table className={`table-auto w-full border-collapse ${className}`}>
+    <div className="w-full">
+      <table className={` w-full max-h-[100px] overflow-auto ${className}`}>
         {children}
       </table>
     </div>
@@ -24,10 +24,15 @@ function Data({ children, className = "" }) {
   return <td className={`px-5 py-3 ${className}`}>{children}</td>;
 }
 
+function Footer({ children, className = "" }) {
+  return <tfoot>{children}</tfoot>;
+}
+
 Table.Head = Head;
 Table.Row = Row;
 Table.Body = Body;
 Table.Data = Data;
+Table.Footer = Footer;
 
 export default Table;
 

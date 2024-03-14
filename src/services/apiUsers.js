@@ -1,22 +1,17 @@
-import axios from "axios";
 import { API } from "../utils/constants";
 
 export const login = async (data) => {
-  try {
-    const res = await axios.get("https://restcountries.com/v3.1/all");
-    // const res = await API.post("/login", data);
-    console.log(res);
-
-    return res;
-  } catch (err) {
-    console.log("ERROR:::", err);
-  }
+  const res = await API.post("/login", data);
+  if (res.data.Error) throw Error(res.data.Error);
+  return res;
 };
 
 export const signup = async (data) => {
   try {
+    console.log(data);
     const res = await API.post("/signup", data);
-    console.log(res);
+    console.log(res.data);
+    return res.data;
   } catch (err) {
     console.log("ERROR:::", err);
   }

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Button from "../../components/UI/Button";
 import { useCreateTest } from "./useCreateTest";
+import { useNavigate } from "react-router-dom";
 
 const TEST_TYPES = ["timed", "untimed", "tutor"];
 
@@ -15,6 +16,7 @@ const CreateQuickTestForm = () => {
   const testNameRef = useRef();
   const numOfQuestionsRef = useRef();
   const { createTest, isLoading } = useCreateTest();
+  const navigate = useNavigate();
 
   const handleCheckbox = (e) => {
     setError(null);
@@ -33,13 +35,14 @@ const CreateQuickTestForm = () => {
     }
 
     const data = {
-      username: "DLL-30576497",
+      username: localStorage.getItem("username"),
       testName: testNameRef.current.value,
-      questionsCount: numOfQuestionsRef.current.value,
+      questionsCount: +numOfQuestionsRef.current.value,
       questionStateList: questionType,
     };
-
-    createTest(data);
+    createTest(data, {
+      onSuccess: () => navigate("/take-quiz"),
+    });
   };
 
   // Styles

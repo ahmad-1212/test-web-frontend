@@ -1,12 +1,28 @@
+import { useState } from "react";
 import Button from "../../components/UI/Button";
 import Select from "../../components/UI/Select";
 import SimpleInput from "../../components/UI/SimpleInput";
 import { useGetSearchData } from "./useGetSearchData";
+import { useSearchResultContext } from "../../context/SearchResultContext";
 
 const QuestionSearchForm = () => {
-  const { data, isLoading } = useGetSearchData();
+  const { setData } = useSearchResultContext();
+  const { getSearchData, isLoading } = useGetSearchData();
+  const [keyword, setKeyword] = useState("");
+  const [selectedOption, setSelectedOption] = useState("All");
+
+  const handleKeywordChange = (e) => {
+    setKeyword(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const keywordsList = keyword.split(" ");
+    getSearchData(keywordsList, {
+      onSuccess: (data) => {
+        setData(data.questions);
+      },
+    });
   };
   return (
     <form
@@ -18,8 +34,12 @@ const QuestionSearchForm = () => {
           className="bg-white"
           type="text"
           placeholder="Search by keyword"
+          onChange={handleKeywordChange}
         />
-        <Select defaultValue="All">
+        <Select
+          value={selectedOption}
+          onChange={(e) => setSelectedOption(e.target.value)}
+        >
           <option value="All">All</option>
           <option value="Question stem">Question stem</option>
           <option value="Topic">Topic</option>
@@ -27,17 +47,18 @@ const QuestionSearchForm = () => {
           <option value="Reference">Reference</option>
           <option value="Question ID">Question ID</option>
         </Select>
-        <Button variant="dark" className="text-[1rem]">
+        <Button
+          disabled={!keyword || isLoading}
+          variant="dark"
+          className="text-[1rem]"
+        >
           Search
         </Button>
       </div>
       <div className="flex gap-3 items-center flex-1 self-stretch">
         <div className="flex self-stretch gap-3 items-center">
           <label className="font-[500] text-[1rem]">Categories</label>
-          <Select
-            className="flex self-stretch"
-            defaultValue="Please select category"
-          >
+          <Select className="flex self-stretch">
             <option disabled selected>
               Please select category
             </option>
@@ -48,7 +69,12 @@ const QuestionSearchForm = () => {
             <option value="Categoray 5">Categoray 5</option>
           </Select>
         </div>
-        <Button variant="dark" className="text-[1rem]">
+        <Button
+          disabled={!keyword || isLoading}
+          type="button"
+          variant="dark"
+          className="text-[1rem]"
+        >
           Create Test
         </Button>
       </div>

@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
+import DisplayQuestions from "./DisplayQuestions";
 import QuestionSearchForm from "./QuestionSearchForm";
-import QuestionSearchResult from "./QuestionSearchResult";
-import axios from "axios";
-import { useSearchResultContext } from "../../context/SearchResultContext";
 
 const QuestionSearch = () => {
   return (
-    <div className="w-full h-screen bg-white ml-5 border-l-2 border-gray-300">
+    <div className="w-full bg-white ml-5 border-l-2 border-gray-300">
       <section className=" bg-slate-200">
         <div className="pl-7 py-6 border-b-2">
           <h5 className="font-[500] text-[1.8rem]">Question Search</h5>
@@ -15,8 +12,8 @@ const QuestionSearch = () => {
           </p>
         </div>
         <QuestionSearchForm />
+        <DisplayQuestions />
       </section>
-      <QuestionSearchResult />
     </div>
   );
 };

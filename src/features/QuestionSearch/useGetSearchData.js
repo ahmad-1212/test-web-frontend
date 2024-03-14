@@ -3,7 +3,7 @@ import { getSearchData as getSearchDataApi } from "../../services/apiQuestions";
 
 export const useGetSearchData = () => {
   const { mutate: getSearchData, status } = useMutation({
-    mutationFn: () => getSearchDataApi,
+    mutationFn: (keywordsList) => getSearchDataApi(keywordsList),
   });
 
   const isLoading = status === "pending";

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import Button from "../../components/UI/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/UI/Input";
 import { useLogin } from "./useLogin";
 
@@ -8,12 +8,30 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm();
   const { login, isLoading } = useLogin();
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     // Handle form submission
-    login(data);
+    login(data, {
+      onSuccess: (data) => {
+        localStorage.setItem("username", data.data.username);
+        navigate("/");
+      },
+      onError: () => {
+        setError("email", {
+          type: "email",
+          message: "Invalid email or password",
+        });
+        setError("password", {
+          type: "password",
+          message: "",
+        });
+      },
+    });
   };
 
   return (
